@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER sameer@damagehead.com
 
 ENV SQUID_VERSION=3.3.8 \
@@ -8,10 +8,10 @@ ENV SQUID_VERSION=3.3.8 \
 
 RUN  apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y squid3 \
- && mv /etc/squid3/squid.conf /etc/squid3/squid.conf.dist \
+ && mv /etc/squid/squid.conf /etc/squid/squid.conf.dist \
  && rm -rf /var/lib/apt/lists/*
 
-COPY squid.conf /etc/squid3/squid.conf
+COPY squid.conf /etc/squid/squid.conf
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 
